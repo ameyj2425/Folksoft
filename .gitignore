@@ -1,0 +1,7 @@
+# Dependencies
+/node_modules
+/todo-app/node_modules
+/todo-app/client/node_modules
+
+# Environment Variables (sensitive information)
+.env

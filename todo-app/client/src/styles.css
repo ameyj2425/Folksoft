@@ -1,0 +1,290 @@
+/* ===== Base ===== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial,
+    sans-serif;
+  background: radial-gradient(
+    circle at top left,
+    #eef4ff,
+    #f6f8fb 38%,
+    #f3f6fb
+  );
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Layout ===== */
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(22px, 2.6vw, 28px);
+  letter-spacing: 0.02em;
+}
+
+.nav {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #2563eb;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.nav a:hover {
+  background: rgba(37, 99, 235, 0.09);
+}
+
+.hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 12px 0 18px;
+}
+
+.empty-state {
+  margin-top: 20px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  font-size: 14px;
+  color: #4b5563;
+  max-width: 360px;
+}
+
+.empty-state .empty-highlight a {
+  font-weight: 600;
+}
+
+/* ===== Card / Panels ===== */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 18px 18px 20px;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+/* ===== Toolbar (search + filters) ===== */
+.toolbar {
+  display: grid;
+  gap: 10px;
+}
+
+.search-row {
+  display: flex;
+}
+
+.search-input {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid #d4dbe7;
+  padding: 10px 14px;
+  font-size: 14px;
+  outline: none;
+  background: #f9fbff;
+}
+
+.search-input::placeholder {
+  color: #9aa4b5;
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  background: #ffffff;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  border-radius: 999px;
+  border: 1px solid #d4dbe7;
+  background: #f9fbff;
+  color: #4b5563;
+  padding: 7px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.tab-btn--active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.18);
+}
+
+/* ===== Todo items ===== */
+.title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.title.completed {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  gap: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 999px;
+  border: 1px solid #d4dbe7;
+  padding: 7px 12px;
+  font-size: 13px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #f3f6ff;
+}
+
+.btn-primary {
+  background: #2563eb;
+  border-color: #1d4ed8;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-danger {
+  background: #f97373;
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+/* ===== Empty state ===== */
+.empty-state {
+  margin-top: 22px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.empty-state a {
+  color: #2563eb;
+}
+
+/* ===== Forms (Add / Edit) ===== */
+.form {
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #d4dbe7;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: #ffffff;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ===== Footer (API line) ===== */
+footer {
+  margin-top: 20px;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* ===== Responsive tweaks ===== */
+@media (max-width: 640px) {
+  .container {
+    padding: 16px 12px 28px;
+  }
+
+  .card {
+    padding: 14px 14px 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .nav {
+    margin-left: 0;
+  }
+}
