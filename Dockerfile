@@ -1,26 +1,32 @@
-# ---------- Build React client ----------
-FROM node:18-alpine AS client-build
+# ---------- Build frontend ----------
+FROM node:20 AS build-frontend
 WORKDIR /app/client
-
-COPY client/package*.json ./
+COPY client/package.json client/package-lock.json ./
 RUN npm install
-
 COPY client .
 RUN npm run build
 
-# ---------- Build server ----------
-FROM node:18-alpine AS server
-WORKDIR /usr/src/app
 
-# Install server deps
-COPY server/package*.json ./
-RUN npm install --only=production
-
-# Copy server source
+# ---------- Build backend ----------
+FROM node:20 AS build-backend
+WORKDIR /app/server
+COPY server/package.json server/package-lock.json ./
+RUN npm install
 COPY server .
 
-# Copy built React app into /usr/src/app/client/dist
-COPY --from=client-build /app/client/dist ./client/dist
 
+# ---------- Production image ----------
+FROM node:20 AS final
+WORKDIR /usr
+
+# Copy server
+COPY --from=build-backend /app/server ./server
+
+# Copy frontend DIST to correct path
+COPY --from=build-frontend /app/client/dist ./client/dist
+
+# Expose backend port
 EXPOSE 8080
-CMD ["node", "index.js"]
+
+# Start backend
+CMD ["node", "./server/index.js"]
