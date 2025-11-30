@@ -34,36 +34,54 @@ This repo contains a clean, production-ready folder structure for both frontend 
 ```
 Folksoft/
 │
-├── client/                     # Frontend (React + Vite)
+├── .github/
+│   └── workflows/
+│       └── deploy.yml           # GitHub Actions CI/CD workflow
+│
+├── client/                      # Frontend (React + Vite)
+│   ├── dist/
+│   │   ├── assets/              # Built static assets (JS/CSS)
+│   │   └── index.html           # Built HTML (production)
+│   ├── node_modules/            # Frontend dependencies
 │   ├── src/
-│   │   ├── api.js              # Axios API wrapper
-│   │   ├── components/
-│   │   ├── pages/
-│   │   └── main.jsx
-│   ├── public/
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.js
+│   │   ├── components/          # Reusable UI components
+│   │   │   └── ...              
+│   │   ├── pages/               # Page-level components
+│   │   │   ├── AddTodo.jsx
+│   │   │   ├── EditTodo.jsx
+│   │   │   └── Home.jsx
+│   │   ├── api.js               # Axios API wrapper
+│   │   ├── index.js             # Root React component / router
+│   │   ├── main.jsx             # Vite entry point
+│   │   └── styles.css           # Global styles
+│   ├── .env.local               # Frontend env (local dev)
+│   ├── index.html               # Vite HTML template (dev)
+│   ├── package.json             # Frontend scripts & deps
+│   ├── package-lock.json
+│   └── vite.config.js           # Vite configuration
 │
-├── server/                     # Backend (Node + Express + MySQL)
+├── server/                      # Backend (Node + Express + MySQL)
 │   ├── controllers/
-│   │   └── todosController.js
-│   ├── routes/
-│   │   └── todos.js
-│   ├── models/
-│   │   └── db.js               # MySQL connection config
+│   │   └── todosController.js   # Controller: To-Do handlers
 │   ├── db/
-│   │   └── schema.sql          # Database schema
+│   │   └── schema.sql           # Database schema (todos table)
+│   ├── models/
+│   │   └── db.js                # MySQL connection / pool
+│   ├── routes/
+│   │   └── todos.js             # Express routes for /api/todos
 │   ├── scripts/
-│   │   └── init-db.mjs
-│   ├── index.js                # Backend entry point
-│   └── package.json
+│   │   └── init-db.mjs          # Script to initialize DB (optional)
+│   ├── node_modules/            # Backend dependencies
+│   ├── .env.example             # Sample backend env variables
+│   ├── index.js                 # Backend entry point
+│   ├── package.json             # Backend scripts & deps
+│   └── package-lock.json
 │
-├── docs/                       # Optional documentation
-│
-├── .env.example                # Template environment variables
-├── .gitignore
-└── README.md
+├── Dockerfile                   # Docker image definition (backend)
+├── .gitignore                   # Git ignore rules
+├── package-lock.json            # Root lockfile (if used)
+└── README.md                    # Project documentation
+
 ```
 
 ## 🧩 Database Schema
