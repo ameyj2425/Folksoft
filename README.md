@@ -87,12 +87,19 @@ Folksoft/
 ## 🧩 Database Schema
 todos Table:
 ```
-CREATE TABLE IF NOT EXISTS todos (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  completed TINYINT(1) DEFAULT 0,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+-- Create the database
+CREATE DATABASE IF NOT EXISTS todo_app
+  DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+-- Create user (for RDS or remote access use '%')
+CREATE USER IF NOT EXISTS 'todo_user'@'%' IDENTIFIED BY 'aj2004@AJ';
+
+-- Grant this user full access ONLY to todo_app DB
+GRANT ALL PRIVILEGES ON todo_app.* TO 'todo_user'@'%';
+
+FLUSH PRIVILEGES;
+
 ```
 
 
