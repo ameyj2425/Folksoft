@@ -34,7 +34,7 @@ export default function AddTodo() {
           className="input"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="e.g., Buy milk"
+          placeholder="e.g., Buy cookies"
         />
 
         <label className="label">Description</label>

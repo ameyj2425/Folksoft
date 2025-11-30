@@ -1,21 +1,26 @@
-# Dockerfile for backend in /server folder
+# ---------- Build React client ----------
+FROM node:18-alpine AS client-build
+WORKDIR /app/client
 
-FROM node:18-alpine
+COPY client/package*.json ./
+RUN npm install
 
-# Create app directory
+COPY client .
+RUN npm run build
+
+# ---------- Build server ----------
+FROM node:18-alpine AS server
 WORKDIR /usr/src/app
 
-# Copy backend package files
+# Install server deps
 COPY server/package*.json ./
+RUN npm install --only=production
 
-# Install production dependencies
-RUN npm install --production
+# Copy server source
+COPY server .
 
-# Copy backend source code
-COPY server/. .
+# Copy built React app into /usr/src/app/client/dist
+COPY --from=client-build /app/client/dist ./client/dist
 
-# Expose backend port
-EXPOSE 3000
-
-# Start the server (uses "start" script from server/package.json)
-CMD ["npm", "start"]
+EXPOSE 8080
+CMD ["node", "index.js"]
